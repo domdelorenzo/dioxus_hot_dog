@@ -1,8 +1,5 @@
 use dioxus::prelude::*;
 
-const FAVICON: Asset = asset!("/assets/favicon.ico");
-const MAIN_CSS: Asset = asset!("/assets/main.css");
-const HEADER_SVG: Asset = asset!("/assets/header.svg");
 static CSS: Asset = asset!("/assets/main.css");
 
 fn main() {
@@ -50,7 +47,34 @@ fn DogView() -> Element {
         }
         div { id: "buttons",
             button { onclick: move |_| img_src.restart(), id: "skip", "skip" }
-            button { onclick: move |_| img_src.restart(), id: "save", "save!" }
+            button {
+                id: "save",
+                onclick: move |_| async move {
+                    let current = img_src.cloned().unwrap();
+                    img_src.restart();
+                    _ = save_dog(current).await;
+                },
+
+                "save!"
+            }
         }
     }
+}
+
+#[server]
+async fn save_dog(image: String) -> Result<(), ServerFnError> {
+    use std::io::Write;
+
+    // open `dogs.txt` file in append-only mode, creating it if it doesn't exist
+    let mut file = std::fs::OpenOptions::new()
+        .write(true)
+        .append(true)
+        .create(true)
+        .open("dogs.txt")
+        .unwrap();
+
+    // the write new line to it with the image
+    file.write_fmt(format_args!("{image}\n"));
+
+    Ok(())
 }
