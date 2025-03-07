@@ -7,10 +7,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { version = "0.6.0", features = ["fullstack"] }
+dioxus = { version = "0.6.0", features = ["fullstack", "router"] }
 reqwest = { version = "0.12.12", features = ["json"] }
-rusqlite = { version = "0.34.0", optional = true }
+rusqlite = { version = "0.34.0", features = ["bundled"], optional = true }
 serde = { version = "1.0.218", features = ["derive"] }
+
 
 [features]
 default = []
@@ -31,3 +32,9 @@ inherits = "dev"
 
 [profile.android-dev]
 inherits = "dev"
+
+[bundle]
+name = "hot_dog"
+version = "0.1.0"
+description = "A Rust app for hot dog lovers"
+identifier = "com.demo.hotdog"
