@@ -8,7 +8,12 @@ edition = "2021"
 
 [dependencies]
 dioxus = { version = "0.6.0", features = ["fullstack", "router"] }
-reqwest = { version = "0.12.12", features = ["json"] }
+reqwest = { version = "0.12.12", default-features = false, features = [
+    "json",
+    "rustls-tls",
+    "http2",
+  "macos-system-configuration",
+  ] }
 rusqlite = { version = "0.34.0", features = ["bundled"], optional = true }
 serde = { version = "1.0.218", features = ["derive"] }
 
@@ -19,7 +24,6 @@ web = ["dioxus/web"]
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
 server = ["dioxus/server", "dep:rusqlite"]
-
 
 [profile]
 
@@ -33,8 +37,3 @@ inherits = "dev"
 [profile.android-dev]
 inherits = "dev"
 
-[bundle]
-name = "hot_dog"
-version = "0.1.0"
-description = "A Rust app for hot dog lovers"
-identifier = "com.demo.hotdog"

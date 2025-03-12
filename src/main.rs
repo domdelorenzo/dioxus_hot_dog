@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 
-mod components;
 mod backend;
+mod components;
 
 use crate::components::*;
 
@@ -20,8 +20,6 @@ struct DogApi {
 fn App() -> Element {
     rsx! {
         document::Stylesheet { href: CSS }
-        // Title {}
-        // DogView {}
         Router::<Route> {}
     }
 }
@@ -32,7 +30,5 @@ enum Route {
     #[route("/")]
     DogView,
     #[route("/favorites")]
-    Favorites, 
-    // #[route("/:..segments")]
-    // PageNotFound { segments: Vec<String> }, // <------ [TODO] can't find this route
+    Favorites,
 }
