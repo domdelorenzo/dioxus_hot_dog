@@ -7,12 +7,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+axum = { version = "0.7.9", optional = true }
 dioxus = { version = "0.6.0", features = ["fullstack", "router"] }
 reqwest = { version = "0.12.12", default-features = false, features = [
     "json",
     "rustls-tls",
     "http2",
-  "macos-system-configuration",
+    "macos-system-configuration",
   ] }
 rusqlite = { version = "0.34.0", features = ["bundled"], optional = true }
 serde = { version = "1.0.218", features = ["derive"] }

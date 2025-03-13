@@ -11,11 +11,6 @@ fn main() {
     dioxus::launch(App);
 }
 
-#[derive(serde::Deserialize)]
-struct DogApi {
-    message: String,
-}
-
 #[component]
 fn App() -> Element {
     rsx! {

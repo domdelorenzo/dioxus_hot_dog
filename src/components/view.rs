@@ -1,13 +1,11 @@
-use dioxus::prelude::*;
 use crate::backend::save_dog;
+use dioxus::prelude::*;
 use serde::Deserialize;
 
 #[derive(Deserialize)]
 struct DogApi {
     message: String,
-    status: String,
 }
-
 
 #[component]
 pub fn DogView() -> Element {
@@ -40,3 +38,4 @@ pub fn DogView() -> Element {
         }
     }
 }
+
