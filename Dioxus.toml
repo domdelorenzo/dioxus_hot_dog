@@ -1,5 +1,8 @@
 [application]
 
+# App (Project) Name
+name = "hot_dog"
+
 [web.app]
 
 # HTML title tag content

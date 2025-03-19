@@ -6,6 +6,12 @@ pub async fn save_dog(image: String) -> Result<(), ServerFnError> {
     Ok(())
 }
 
+#[server]
+pub async fn delete_dog(id: usize) -> Result<(), ServerFnError> {
+    DB.with(|f| f.execute("DELETE FROM dogs WHERE id = ?1", &[&id]))?;
+    Ok(())
+}
+
 // Query the database and return the last 10 dogs and their url
 #[server]
 pub async fn list_dogs() -> Result<Vec<(usize, String)>, ServerFnError> {
