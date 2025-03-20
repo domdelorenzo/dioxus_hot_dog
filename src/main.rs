@@ -7,11 +7,21 @@ use dioxus::prelude::*;
 static CSS: Asset = asset!("/assets/main.css");
 
 fn main() {
+    // dioxus::launch(App);
+    
+    #[cfg(feature = "desktop")]
+    fn launch_app() {
+        use dioxus::desktop::tao;
+        let window = tao::window::WindowBuilder::new().with_resizable(true);
+        dioxus::LaunchBuilder::new().with_cfg(dioxus::desktop::Config::new().with_window(window).with_menu(None)).launch(App);
+    }
 
-    #[cfg(not(feature = "server"))]
-    server_fn::client::set_server_url("http://127.0.0.1:8080");
+    #[cfg(not(feature = "desktop"))]
+    fn launch_app() {
+        dioxus::launch(App);
+    }
 
-    dioxus::launch(App);
+    launch_app();
 }
 
 #[component]

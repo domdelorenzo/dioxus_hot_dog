@@ -11,6 +11,7 @@ pub fn Favorites() -> Element {
     let mut favorites = use_resource(crate::backend::list_dogs);
     // assign favorites to a signal and suspend there to pass it to the for loop
     let favorites_signal = favorites.suspend()?;
+    
     rsx! {
         div { id: "favorites",
             div { id: "favorites-container",
