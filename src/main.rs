@@ -1,3 +1,10 @@
+// Prevents additional console window on Windows in release,
+// run bundler with `--platform windows` not `--platform desktop` to ensure config is applied
+#![cfg_attr(
+    all(not(debug_assertions), target_os = "windows"),
+    windows_subsystem = "windows"
+)]
+
 mod backend;
 mod components;
 
@@ -8,7 +15,7 @@ static CSS: Asset = asset!("/assets/main.css");
 
 fn main() {
     // dioxus::launch(App);
-    
+   
     #[cfg(feature = "desktop")]
     fn launch_app() {
         use dioxus::desktop::tao;

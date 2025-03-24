@@ -26,7 +26,7 @@ script = []
 
 [bundle]
 name = "hot_dog"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Rust app for hot dog lovers"
 identifier = "com.demo.hotdog"
 publisher = "Dominick DeLorenzo"

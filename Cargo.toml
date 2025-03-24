@@ -1,6 +1,6 @@
 [package]
 name = "hot_dog"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Dominick DeLorenzo <49847428+domdelorenzo@users.noreply.github.com>"]
 edition = "2021"
 
@@ -15,7 +15,7 @@ reqwest = { version = "0.12.14", default-features = false, features = [
   "charset",
   "http2"
   ] }
-rusqlite = { version = "0.34.0", features = ["bundled", "unlock_notify"], optional = true }
+rusqlite = { version = "0.34.0", features = ["bundled", "unlock_notify"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.133"
 
@@ -24,11 +24,11 @@ serde_json = "1.0.133"
 
 
 [features]
-default = ["web", "server"]
-web = ["dioxus/web"]
+default = []
+bundle = []
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
-server = ["dioxus/server", "dep:rusqlite"]
+server = ["dioxus/server"]
 
 [profile]
 
